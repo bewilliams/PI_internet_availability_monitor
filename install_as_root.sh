@@ -3,12 +3,7 @@
 
 #prepare for installs
 apt-get update
-apt-get install python-software-properties -y
-apt-get install make -y
-
-#install logstash
-wget https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz;
-tar -xvf logstash-1.4.2.tar.gz;
+apt-get install python-software-properties make ant zip -y
 
 #install elasticsearch
 wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.3.9.deb
