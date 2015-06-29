@@ -13,5 +13,5 @@ def analyze_ping(target, raw_ping, raw_error)
     bytes = raw_line[/^\d*/].to_i
     connected = true
   end
-  {target: target, time: time, ttl: ttl, bytes: bytes, connected: connected, error: raw_error.join.chomp}
+  {target_name: target[:name], target_address: target[:address], time: time, ttl: ttl, bytes: bytes, connected: connected, error: raw_error.join.chomp}
 end
