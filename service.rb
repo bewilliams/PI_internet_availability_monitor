@@ -30,9 +30,12 @@ while true
   isup = !(results.select {|x| x[:connected]}).empty?
 
   #print and record
-  puts "#{start_time.iso8601(3)} #{results.to_json}"
+  results.each do |result|
+    puts "#{start_time.iso8601(3)} #{result.to_json}"
+    open('ping.log','a'){|f| f.puts "#{start_time.iso8601(3)} #{result.to_json}"}
+  end
+
   puts "#{start_time.iso8601(3)} #{isup ? 'connected' : 'disconnected'}"
-  open('ping.log','a'){|f| f.puts "#{start_time.iso8601(3)} #{results.to_json}"}
   open('up.log','a'){|f| f.puts "#{start_time.iso8601(3)} #{isup ? 'connected' : 'disconnected'}"}
 
   #wait 10 seconds
