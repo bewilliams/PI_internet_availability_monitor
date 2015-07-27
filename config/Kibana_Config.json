@@ -56,6 +56,15 @@
           "type": "lucene",
           "enable": true,
           "query": "\"nearest comcast server\""
+        },
+        "6": {
+          "id": 6,
+          "color": "#BA43A9",
+          "alias": "All Pings",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "time"
         }
       },
       "ids": [
@@ -64,7 +73,8 @@
         2,
         3,
         4,
-        5
+        5,
+        6
       ]
     },
     "filter": {
@@ -86,6 +96,62 @@
     }
   },
   "rows": [
+    {
+      "title": "Stats",
+      "height": "150px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 2,
+          "editable": true,
+          "type": "hits",
+          "loadingEditor": false,
+          "style": {
+            "font-size": "24pt"
+          },
+          "arrangement": "horizontal",
+          "chart": "total",
+          "counter_pos": "above",
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0
+            ]
+          },
+          "title": "Outage Hits"
+        },
+        {
+          "span": 2,
+          "editable": true,
+          "type": "hits",
+          "loadingEditor": false,
+          "style": {
+            "font-size": "10pt"
+          },
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "above",
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0,
+              5
+            ]
+          }
+        }
+      ],
+      "notice": false
+    },
     {
       "title": "Internet Outage",
       "height": "100px",
@@ -110,15 +176,15 @@
           "linewidth": 3,
           "timezone": "browser",
           "spyable": true,
-          "zoomlinks": true,
-          "bars": false,
-          "stack": false,
+          "zoomlinks": false,
+          "bars": true,
+          "stack": true,
           "points": false,
-          "lines": true,
+          "lines": false,
           "legend": false,
           "x-axis": true,
           "y-axis": true,
-          "percentage": false,
+          "percentage": true,
           "interactive": true,
           "queries": {
             "mode": "selected",
@@ -142,98 +208,7 @@
             "1M",
             "1y"
           ],
-          "options": true,
-          "tooltip": {
-            "value_type": "cumulative",
-            "query_as_alias": true
-          },
-          "scale": 1,
-          "y_format": "none",
-          "grid": {
-            "max": null,
-            "min": 0
-          },
-          "annotate": {
-            "enable": false,
-            "query": "*",
-            "size": 20,
-            "field": "_type",
-            "sort": [
-              "_score",
-              "desc"
-            ]
-          },
-          "pointradius": 5,
-          "show_query": true,
-          "legend_counts": true,
-          "zerofill": true,
-          "derivative": false
-        }
-      ],
-      "notice": false
-    },
-    {
-      "title": "Graph",
-      "height": "350px",
-      "editable": true,
-      "collapse": false,
-      "collapsable": true,
-      "panels": [
-        {
-          "span": 12,
-          "editable": true,
-          "group": [
-            "default"
-          ],
-          "type": "histogram",
-          "mode": "mean",
-          "time_field": "@timestamp",
-          "value_field": "time",
-          "auto_int": true,
-          "resolution": 100,
-          "interval": "30s",
-          "fill": 3,
-          "linewidth": 3,
-          "timezone": "browser",
-          "spyable": true,
-          "zoomlinks": true,
-          "bars": false,
-          "stack": false,
-          "points": false,
-          "lines": true,
-          "legend": true,
-          "x-axis": true,
-          "y-axis": true,
-          "percentage": false,
-          "interactive": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5
-            ]
-          },
-          "title": "Ping Times",
-          "intervals": [
-            "auto",
-            "1s",
-            "1m",
-            "5m",
-            "10m",
-            "30m",
-            "1h",
-            "3h",
-            "12h",
-            "1d",
-            "1w",
-            "1M",
-            "1y"
-          ],
-          "options": true,
+          "options": false,
           "tooltip": {
             "value_type": "cumulative",
             "query_as_alias": true
@@ -269,36 +244,31 @@
           "type": "histogram",
           "mode": "mean",
           "time_field": "@timestamp",
-          "value_field": "ttl",
+          "value_field": "time",
           "auto_int": true,
-          "resolution": 100,
-          "interval": "30s",
+          "resolution": 300,
+          "interval": "10s",
           "fill": 3,
           "linewidth": 3,
           "timezone": "browser",
           "spyable": true,
-          "zoomlinks": true,
+          "zoomlinks": false,
           "bars": false,
           "stack": false,
           "points": false,
           "lines": true,
-          "legend": true,
+          "legend": false,
           "x-axis": true,
           "y-axis": true,
           "percentage": false,
           "interactive": true,
           "queries": {
-            "mode": "all",
+            "mode": "selected",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5
+              6
             ]
           },
-          "title": "TTL",
+          "title": "Average Ping",
           "intervals": [
             "auto",
             "1s",
@@ -314,7 +284,7 @@
             "1M",
             "1y"
           ],
-          "options": true,
+          "options": false,
           "tooltip": {
             "value_type": "cumulative",
             "query_as_alias": true
@@ -345,10 +315,100 @@
       "notice": false
     },
     {
+      "title": "Graph",
+      "height": "500px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 12,
+          "editable": true,
+          "group": [
+            "default"
+          ],
+          "type": "histogram",
+          "mode": "mean",
+          "time_field": "@timestamp",
+          "value_field": "time",
+          "auto_int": true,
+          "resolution": 300,
+          "interval": "10s",
+          "fill": 3,
+          "linewidth": 3,
+          "timezone": "browser",
+          "spyable": true,
+          "zoomlinks": false,
+          "bars": false,
+          "stack": false,
+          "points": false,
+          "lines": true,
+          "legend": true,
+          "x-axis": true,
+          "y-axis": true,
+          "percentage": false,
+          "interactive": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "title": "Ping Times",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1M",
+            "1y"
+          ],
+          "options": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
+          "annotate": {
+            "enable": true,
+            "query": "disconnected",
+            "size": 20,
+            "field": "message",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "pointradius": 5,
+          "show_query": true,
+          "legend_counts": false,
+          "zerofill": true,
+          "derivative": false
+        }
+      ],
+      "notice": false
+    },
+    {
       "title": "Events",
       "height": "350px",
       "editable": true,
-      "collapse": false,
+      "collapse": true,
       "collapsable": true,
       "panels": [
         {
@@ -393,7 +453,8 @@
               2,
               3,
               4,
-              5
+              5,
+              6
             ]
           },
           "field_list": true,
@@ -419,21 +480,21 @@
   "pulldowns": [
     {
       "type": "query",
-      "collapse": false,
+      "collapse": true,
       "notice": false,
       "query": "*",
       "pinned": true,
       "history": [
+        "time",
         "\"nearest comcast server\"",
         "\"google dns\"",
         "yahoo.com",
         "google.com",
         "comcast.com",
         "disconnected",
+        "time:",
         "\"comcast server\"",
-        "comcast",
-        "google",
-        "yahoo"
+        "comcast"
       ],
       "remember": 10,
       "enable": true
